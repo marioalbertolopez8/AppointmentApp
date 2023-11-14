@@ -1,14 +1,14 @@
 ﻿using MedicalAppModels;
-using MedicalAppServices;
+using MedicalAppLogic;
 
 
 namespace MedicalAppUI
 {
     public partial class FrmConsultationType : Form
     {
-        private readonly SpecialtyService _specialtyService;
+        private readonly SpecialtyLogic _specialtyService;
 
-        public FrmConsultationType(SpecialtyService specialtyService)
+        public FrmConsultationType(SpecialtyLogic specialtyService)
         {
             InitializeComponent();
 

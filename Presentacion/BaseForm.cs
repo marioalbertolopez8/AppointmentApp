@@ -1,13 +1,13 @@
-﻿using MedicalAppServices;
+﻿using MedicalAppLogic;
 
 
 namespace MedicalAppUI
 {
     public partial class BaseForm : Form
     {
-        private readonly SpecialtyService _specialityService;
-        private readonly DoctorService _doctorServices;
-        private readonly PatientService _patientServices;
+        private readonly SpecialtyLogic _specialityService;
+        private readonly DoctorLogic _doctorServices;
+        private readonly PatientLogic _patientServices;
 
         private readonly AppointmentService _appointmentServices;
 
@@ -15,11 +15,11 @@ namespace MedicalAppUI
         public BaseForm()
         {
             InitializeComponent();
-            // Initialize the SpecialtyService instance
+            // Initialize the SpecialtyLogic instance
 
-            _doctorServices = new DoctorService();
-            _patientServices = new PatientService();
-            _specialityService = new SpecialtyService();
+            _doctorServices = new DoctorLogic();
+            _patientServices = new PatientLogic();
+            _specialityService = new SpecialtyLogic();
 
             _appointmentServices = new AppointmentService(_doctorServices, _patientServices, _specialityService);
         }

@@ -1,20 +1,20 @@
 ﻿using MedicalAppModels;
-using MedicalAppServices;
+using MedicalAppLogic;
 
 
 namespace MedicalAppUI
 {
     public partial class FrmAppointmentUI : Form
     {
-        private readonly PatientService _patientService; // Servicio para manejo de pacientes
-        private readonly DoctorService _doctorService; // Servicio para manejo de doctores
-        private readonly SpecialtyService _specialityService; // Servicio para manejo de especialidades
+        private readonly PatientLogic _patientService; // Servicio para manejo de pacientes
+        private readonly DoctorLogic _doctorService; // Servicio para manejo de doctores
+        private readonly SpecialtyLogic _specialityService; // Servicio para manejo de especialidades
 
         private readonly AppointmentService _appointmentService;
 
         private DateTime selectedDateTime;
 
-        public FrmAppointmentUI(PatientService patientService, DoctorService doctorService, SpecialtyService specialtyService, AppointmentService appointmentService)
+        public FrmAppointmentUI(PatientLogic patientService, DoctorLogic doctorService, SpecialtyLogic specialtyService, AppointmentService appointmentService)
         {
             _patientService = patientService ?? throw new ArgumentNullException(nameof(patientService));
             _doctorService = doctorService ?? throw new ArgumentNullException(nameof(doctorService));
@@ -31,7 +31,7 @@ namespace MedicalAppUI
                 datePicker.Value = DateTime.Today.AddDays(1);
                 PopulateTimeSlots(8, 18, 30); // Para establecer los horarios de atención de los dentistas
 
-                // Completar DataGridView dgridPacient con PatientService
+                // Completar DataGridView dgridPacient con PatientLogic
                 var patients = patientService.GetAllPatients();
                 dgridPacient.DataSource = patients.ToList();
 
@@ -43,7 +43,7 @@ namespace MedicalAppUI
                     listDoctor.Items.Add($"{doctor.Id} -  {doctor.FirstName} {doctor.FirstLastName}");
                 }
 
-                // Completar ComboBox cboxSpeciality con SpecialtyService
+                // Completar ComboBox cboxSpeciality con SpecialtyLogic
 
                 var consultationTypes = specialtyService.GetAllActiveSpecialties();
                 foreach (var consultationType in consultationTypes)

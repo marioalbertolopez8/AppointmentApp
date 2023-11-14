@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LogicaNegocio\MedicalAppServices.csproj" />
+    <ProjectReference Include="..\LogicaNegocio\MedicalAppLogic.csproj" />
   </ItemGroup>
 
   <ItemGroup>

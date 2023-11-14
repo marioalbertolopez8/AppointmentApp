@@ -1,4 +1,4 @@
-﻿using MedicalAppServices;
+﻿using MedicalAppLogic;
 
 namespace MedicalAppUI
 {
@@ -6,15 +6,15 @@ namespace MedicalAppUI
     {
         private enum Mode { Add, Edit }
         private Mode _currentMode;
-        private DoctorService _doctorService;
+        private DoctorLogic _doctorService;
 
-        public FrmDoctorUI(DoctorService? doctorService)
+        public FrmDoctorUI(DoctorLogic? doctorService)
         {
             // Si doctorServices es nulo, lanzar una excepción
             _doctorService = doctorService ?? throw new ArgumentNullException(nameof(doctorService));
 
             InitializeComponent();
-            doctorService = new DoctorService();
+            doctorService = new DoctorLogic();
             _currentMode = Mode.Add; // Modo inicial
 
             // Añadir elementos al ComboBox

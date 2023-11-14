@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalAppModels", "Entidades\MedicalAppModels.csproj", "{7FB3C955-E675-4AD8-87D8-F8893923DC40}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalAppServices", "LogicaNegocio\MedicalAppServices.csproj", "{07A715B3-6765-498B-B1D2-7E978214AE83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalAppLogic", "LogicaNegocio\MedicalAppLogic.csproj", "{07A715B3-6765-498B-B1D2-7E978214AE83}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalAppUI", "Presentacion\MedicalAppUI.csproj", "{6E3ACB4A-2458-49CE-B016-E5EE66A82359}"
 EndProject

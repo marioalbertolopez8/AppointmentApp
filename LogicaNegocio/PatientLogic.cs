@@ -1,15 +1,15 @@
 ﻿using MedicalAppModels;
 using System;
 
-namespace MedicalAppServices
+namespace MedicalAppLogic
 {
-    public class PatientService
+    public class PatientLogic
     {
         private readonly Patient[] patients; // Array para almacenar los pacientes
         private int currentPatientCount; // Contador de pacientes actuales
         private const int MAX_PATIENTS = 20; // Máximo número de pacientes permitidos
 
-        public PatientService()
+        public PatientLogic()
         {
             patients = new Patient[MAX_PATIENTS]; // Inicializando el array con el máximo de pacientes
             currentPatientCount = 0; // Inicializando el contador de pacientes
@@ -115,7 +115,6 @@ namespace MedicalAppServices
                     {
                         throw new ArgumentException("No existe paciente con ese ID.");
                     }
-
 
             Gender newGender;
 

@@ -1,15 +1,15 @@
 ﻿using MedicalAppModels;
 
 
-namespace MedicalAppServices
+namespace MedicalAppLogic
 {
-    public class SpecialtyService
+    public class SpecialtyLogic
     {
         private ConsultationType[] consultationTypes;
         private const int MAX_CONSULTATION_TYPES = 10;
         private int currentTypesCount = 0; // Lleva la cuenta de cuántos tipos de consulta se han añadido
 
-        public SpecialtyService()
+        public SpecialtyLogic()
         {
             consultationTypes = new ConsultationType[MAX_CONSULTATION_TYPES];
         }

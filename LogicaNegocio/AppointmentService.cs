@@ -2,17 +2,17 @@
 using System;
 
 
-namespace MedicalAppServices
+namespace MedicalAppLogic
 {
     public class AppointmentService
     {
         private Appointment[] appointments; // Array para almacenar las citas
         private int appointmentIndex; // Índice para llevar el conteo de las citas agregadas
-        private readonly DoctorService doctorService;
-        private readonly PatientService patientService;
-        private readonly SpecialtyService specialtyService;
+        private readonly DoctorLogic doctorService;
+        private readonly PatientLogic patientService;
+        private readonly SpecialtyLogic specialtyService;
 
-        public AppointmentService(DoctorService doctorService, PatientService patientService, SpecialtyService specialtyService)
+        public AppointmentService(DoctorLogic doctorService, PatientLogic patientService, SpecialtyLogic specialtyService)
         {
             appointments = new Appointment[20]; 
             appointmentIndex = 0;

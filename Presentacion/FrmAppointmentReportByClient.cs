@@ -1,4 +1,4 @@
-﻿using MedicalAppServices;
+﻿using MedicalAppLogic;
 using System.Diagnostics;
 
 
@@ -7,12 +7,12 @@ namespace MedicalAppUI
     public partial class FrmAppointmentReportByClient : Form
     {
         private readonly AppointmentService appointmentService;
-        private readonly DoctorService doctorService;
-        private readonly PatientService patientService;
+        private readonly DoctorLogic doctorService;
+        private readonly PatientLogic patientService;
 
         public FrmAppointmentReportByClient(AppointmentService appointmentService,
-                                            DoctorService doctorService,
-                                            PatientService patientService)
+                                            DoctorLogic doctorService,
+                                            PatientLogic patientService)
         {
             InitializeComponent();
 

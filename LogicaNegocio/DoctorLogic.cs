@@ -1,14 +1,14 @@
 ﻿using MedicalAppModels;
 
-namespace MedicalAppServices
+namespace MedicalAppLogic
 {
-    public class DoctorService
+    public class DoctorLogic
     {
         private readonly Doctor[] doctors; // Array para almacenar los doctores
         private int currentDoctorCount; // Contador de doctores actuales
         private const int MAX_DOCTORS = 4; // Máximo número de doctores permitidos
 
-        public DoctorService()
+        public DoctorLogic()
         {
             doctors = new Doctor[MAX_DOCTORS]; // Inicializando el array con el máximo de doctores
             currentDoctorCount = 0; // Inicializando el contador de doctores
