@@ -1,4 +1,5 @@
 ﻿using MedicalAppModels;
+using System;
 
 namespace MedicalAppServices
 {
@@ -6,7 +7,7 @@ namespace MedicalAppServices
     {
         private readonly Patient[] patients; // Array para almacenar los pacientes
         private int currentPatientCount; // Contador de pacientes actuales
-        private const int MAX_PATIENTS = 4; // Máximo número de pacientes permitidos
+        private const int MAX_PATIENTS = 20; // Máximo número de pacientes permitidos
 
         public PatientService()
         {
@@ -19,7 +20,7 @@ namespace MedicalAppServices
         public IEnumerable<Patient> GetAllPatients()
         {
             // Devolver solo los elementos que no sean null
-            return patients.Where(d => d != null).ToArray();
+            return patients.Where(p => p != null).ToArray();
         }
 
 
@@ -27,7 +28,7 @@ namespace MedicalAppServices
         public bool AddPatient(string idString, string firstName, string firstLastName, 
             string secondLastName, DateTime birthDate, string gender)
         {
-            //ValidatePatientDetails(idString, firstName, firstLastName, secondLastName,birthDate, gender); // Validación común
+            ValidatePatientDetails(idString, firstName, firstLastName, secondLastName, birthDate, gender); // Validación común
 
             // Validaciones específicas de AddPatient
             if (currentPatientCount >= MAX_PATIENTS)
@@ -44,6 +45,7 @@ namespace MedicalAppServices
             {
                 throw new ArgumentException("Ya existe un patient con el mismo ID.", nameof(id));
             }
+
 
             Gender newGender;
 
@@ -70,93 +72,69 @@ namespace MedicalAppServices
         }
 
 
+        private bool IsBirthdateValid(DateTime birthDate)
+        {
+            // Obtener la fecha de mañana, con la hora establecida a medianoche
+            DateTime tomorrowAtMidnight = DateTime.Today.AddDays(1);
 
+            // Si la fecha de nacimiento es igual o posterior a mañana (en el futuro), devolvemos false
+            return birthDate < tomorrowAtMidnight;
+        }
 
-        private void ValidatePatientDetails(string idString, string firstName, string firstLastName, string secondLastName, string status)
+        private void ValidatePatientDetails(string idString, string firstName, string firstLastName, string secondLastName, DateTime birthDate, string gender)
         {
             if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(firstLastName) || string.IsNullOrWhiteSpace(secondLastName))
             {
                 throw new ArgumentException("Nombre y apellidos son obligatorios y no pueden estar vacíos o ser solo espacios.");
             }
-
-            if (status == null)
+            if (gender == null)
             {
-                throw new ArgumentException("El estado es obligatorio y no puede ser nulo.", nameof(status));
+                throw new ArgumentException("El género es obligatorio y no puede ser nulo.", nameof(gender));
+
             }
-
-            if (!status.Equals("Activo", StringComparison.OrdinalIgnoreCase) && !status.Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
+            if (!IsBirthdateValid(birthDate))
             {
-                throw new ArgumentException("El estado proporcionado no es válido. Debe ser 'Activo' o 'Inactivo'.", nameof(status));
+                throw new ArgumentException("La fecha de nacimiento no puede ser en el futuro.", nameof(birthDate));
             }
         }
 
-        private char GetGenderChar(string gender)
+
+
+        public void UpdatePatient(string idString, DateTime newBirthDate, string genderString)
         {
-            if (string.IsNullOrEmpty(gender) || gender.Length < 1)
+
+            ValidatePatientDetails(idString, "a", "a", "a", newBirthDate, genderString); // Validación común
+            if (!int.TryParse(idString, out int id))
             {
-                throw new ArgumentException("Invalid gender string.", nameof(gender));
+                throw new ArgumentException("El ID proporcionado no es válido. Debe ser un número entero.", nameof(idString));
             }
+            //Find the patient by ID
+            var existingpatient = Array.Find(patients, p => p != null && p.Id == id);
 
-            // Convert the first letter of the gender to uppercase and return it as a char
-            return char.ToUpper(gender[0]);
-        }
-
-
-
-
-
-
-        public void UpdatePatientDetails(int id, DateTime newBirthDate, char newGender)
-                {
-                    // Find the patient by ID
-                    var patient = Array.Find(patients, p => p != null && p.Id == id);
-
-                    if (patient == null)
+                    if (existingpatient == null)
                     {
-                        throw new ArgumentException("No patient with the specified ID exists.");
+                        throw new ArgumentException("No existe paciente con ese ID.");
                     }
 
-                    // Update the patient's birth date
-                    //patient.UpdateBirthDate(newBirthDate);
 
-                    // Update the patient's gender
-                    Gender gender = newGender switch
-                    {
-                        'F' => Gender.Femenino,
-                        'M' => Gender.Masculino,
-                        'N' => Gender.No_Especificado,
-                        _ => throw new ArgumentException("Invalid gender. Gender must be 'F' for Female, 'M' for Male, or 'N' for Unspecified.", nameof(newGender))
-                    };
+            Gender newGender;
 
-                    //patient.UpdateGender(gender);
-                }
-
-
-        private void ValidatePatient(int id, string firstName, string lastName1, string lastName2, DateTime birthDate, char gender)
-        {
-            // Check if the ID is already used
-            if (Array.Exists(patients, p => p != null && p.Id == id))
+            if (genderString.Equals("Masculino", StringComparison.OrdinalIgnoreCase))
             {
-                throw new InvalidOperationException("A patient with this ID already exists.");
+                newGender = Gender.Masculino;
+            }
+            else if (genderString.Equals("Femenino", StringComparison.OrdinalIgnoreCase))
+            {
+                newGender = Gender.Femenino;
+            }
+            else
+            {
+                newGender = Gender.No_Especificado;
             }
 
-            // Check for valid names and last names
-            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName1) || string.IsNullOrWhiteSpace(lastName2))
-            {
-                throw new ArgumentException("Names and last names cannot be null or whitespace.");
-            }
 
-            // Check for valid birth date
-            if (birthDate >= DateTime.Today)
-            {
-                throw new ArgumentException("Birth date should be in the past.", nameof(birthDate));
-            }
 
-            // Check for valid gender
-            if (gender != 'F' && gender != 'M' && gender != 'N')
-            {
-                throw new ArgumentException("Invalid gender. Gender must be 'F' for Female, 'M' for Male, or 'N' for Unspecified.", nameof(gender));
-            }
+            existingpatient.UpdateDetails(newBirthDate, newGender);
         }
 
         public Patient? GetPatient(int id)

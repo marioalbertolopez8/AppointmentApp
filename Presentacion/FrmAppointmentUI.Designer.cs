@@ -39,7 +39,6 @@
             cboxSpeciality = new ComboBox();
             listDoctor = new ListBox();
             btnSave = new Button();
-            btnCancel = new Button();
             timeComboBox = new ComboBox();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgridPacient).BeginInit();
@@ -145,16 +144,6 @@
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
-            // btnCancel
-            // 
-            btnCancel.Location = new Point(472, 221);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 23);
-            btnCancel.TabIndex = 28;
-            btnCancel.Text = "Cancelar";
-            btnCancel.UseVisualStyleBackColor = true;
-            btnCancel.Click += btnCancel_Click;
-            // 
             // timeComboBox
             // 
             timeComboBox.FormattingEnabled = true;
@@ -179,7 +168,6 @@
             ClientSize = new Size(800, 450);
             Controls.Add(label1);
             Controls.Add(timeComboBox);
-            Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(listDoctor);
             Controls.Add(cboxSpeciality);
@@ -194,20 +182,6 @@
             Name = "FrmAppointmentUI";
             Text = "FrmAppointmentRegistration";
             Load += FrmAppointmentRegistration_Load;
-            Controls.SetChildIndex(labelCodigo, 0);
-            Controls.SetChildIndex(txtId, 0);
-            Controls.SetChildIndex(labelPaciente, 0);
-            Controls.SetChildIndex(labelDoctor, 0);
-            Controls.SetChildIndex(labelEspecialidad, 0);
-            Controls.SetChildIndex(labelFecha, 0);
-            Controls.SetChildIndex(dgridPacient, 0);
-            Controls.SetChildIndex(datePicker, 0);
-            Controls.SetChildIndex(cboxSpeciality, 0);
-            Controls.SetChildIndex(listDoctor, 0);
-            Controls.SetChildIndex(btnSave, 0);
-            Controls.SetChildIndex(btnCancel, 0);
-            Controls.SetChildIndex(timeComboBox, 0);
-            Controls.SetChildIndex(label1, 0);
             ((System.ComponentModel.ISupportInitialize)dgridPacient).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -226,7 +200,6 @@
         private ComboBox cboxSpeciality;
         private ListBox listDoctor;
         private Button btnSave;
-        private Button btnCancel;
         private DateTimePicker dateTimePicker1;
         private ComboBox timeComboBox;
         private Label label1;

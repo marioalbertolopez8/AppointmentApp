@@ -30,11 +30,6 @@
 
         public void UpdateDetails(DateTime newBirthDate, Gender newGender)
         {
-            if (newBirthDate >= DateTime.Today)
-            {
-                throw new ArgumentException("Fecha de nacimiento no puede ser en el futuro.", nameof(newBirthDate));
-            }
-
             // Update properties
             BirthDate = newBirthDate;
             Gender = newGender;

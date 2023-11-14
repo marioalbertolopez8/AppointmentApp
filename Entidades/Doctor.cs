@@ -30,13 +30,6 @@ namespace MedicalAppModels
 
         public void UpdateDetails(string newFirstName, string newFirstLastName, string newSecondLastName, DoctorStatus newStatus)
         {
-            if (string.IsNullOrWhiteSpace(newFirstName))
-                throw new ArgumentException("First name must not be empty.", nameof(newFirstName));
-            if (string.IsNullOrWhiteSpace(newFirstLastName))
-                throw new ArgumentException("First last name must not be empty.", nameof(newFirstLastName));
-            if (string.IsNullOrWhiteSpace(newSecondLastName))
-                throw new ArgumentException("Second last name must not be empty.", nameof(newSecondLastName));
-
             FirstName = newFirstName;
             FirstLastName = newFirstLastName;
             SecondLastName = newSecondLastName;

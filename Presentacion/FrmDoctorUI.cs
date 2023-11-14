@@ -10,9 +10,6 @@ namespace MedicalAppUI
 
         public FrmDoctorUI(DoctorService? doctorService)
         {
-
-       
-
             // Si doctorServices es nulo, lanzar una excepción
             _doctorService = doctorService ?? throw new ArgumentNullException(nameof(doctorService));
 
@@ -38,10 +35,6 @@ namespace MedicalAppUI
             dgvDoctors.Columns["FirstLastName"].HeaderText = "Primer Apellido";
             dgvDoctors.Columns["SecondLastName"].HeaderText = "Segundo Apellido";
             dgvDoctors.Columns["Status"].HeaderText = "Estado";
-
-
-
-
         }
 
         private void ClearFields()
@@ -89,7 +82,7 @@ namespace MedicalAppUI
 
                 // Volver al modo 'Agregar' después de una actualización exitosa
                 _currentMode = Mode.Add;
-                btnToggleMode.Text = "Cambiar a Edición";
+                btnToggleMode.Text = "Editar ID";
                 ClearFields(); // Limpiar campos de entrada
 
                 // Controlar la disponibilidad de controles basados en el modo

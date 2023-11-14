@@ -31,10 +31,12 @@ namespace MedicalAppUI
 
         private void registroDeCitasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Create a new instance of the appointment registration form
-            FrmAppointmentUI appointmentForm = new FrmAppointmentUI(_patientServices, _doctorServices, _specialityService, _appointmentServices);
+            
+            FrmAppointmentUI appointmentForm = new FrmAppointmentUI(_patientServices,
+                                                                    _doctorServices,
+                                                                    _specialityService,
+                                                                    _appointmentServices);
 
-            // Show the form
             try
             {
                 appointmentForm.ShowDialog();
@@ -58,14 +60,9 @@ namespace MedicalAppUI
             doctorForm.Show();
         }
 
-        private void registroToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void administraciónDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmPatientUI patientForm = new FrmPatientUI(_patientServices);
+            FrmPatientUI patientForm = new(_patientServices);
             patientForm.Show();
         }
 
@@ -73,6 +70,18 @@ namespace MedicalAppUI
         {
             FrmAppointmentReportByClient reportByClientForm = new FrmAppointmentReportByClient(_appointmentServices, _doctorServices, _patientServices);
             reportByClientForm.Show();
+        }
+
+        private void citasPorFechaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAppointmentReportByDate reportByDateForm = new FrmAppointmentReportByDate(_appointmentServices, _doctorServices, _patientServices);
+            reportByDateForm.Show();
+        }
+
+        private void citasPorDoctorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAppointmentReportByDoctor reportByDoctorForm = new FrmAppointmentReportByDoctor(_appointmentServices, _doctorServices, _patientServices);
+            reportByDoctorForm.Show();
         }
     }
 }

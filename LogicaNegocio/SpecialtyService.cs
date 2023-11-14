@@ -18,17 +18,17 @@ namespace MedicalAppServices
         {
             if (currentTypesCount >= MAX_CONSULTATION_TYPES)
             {
-                throw new InvalidOperationException("Cannot add more consultation types, limit reached.");
+                throw new InvalidOperationException("No se pueden añadir mas tipos de consulta.");
             }
 
             if (consultationTypes.Any(ct => ct != null && ct.Number == number))
             {
-                throw new ArgumentException("A consultation type with the same number already exists.", nameof(number));
+                throw new ArgumentException("Ya existe una consulta con ese ID.", nameof(number));
             }
 
             if (string.IsNullOrWhiteSpace(description))
             {
-                throw new ArgumentException("Description is required and cannot be empty or whitespace.", nameof(description));
+                throw new ArgumentException("Se requiere una descripción válida.", nameof(description));
             }
 
             var consultationType = new ConsultationType(number, description, status);
@@ -46,15 +46,22 @@ namespace MedicalAppServices
             return result;
         }
 
+        public IEnumerable<ConsultationType> GetAllActiveSpecialties()
+        {
+            return consultationTypes.Where(s => s != null && s.Status == 'A').ToArray();
+        }
+
+
+
         public bool UpdateConsultationType(int number, string newDescription, ConsultationStatus newStatus)
             {
             var index = Array.FindIndex(consultationTypes, 0, currentTypesCount, ct => ct.Number == number);
             if (index == -1)
             {
-                throw new ArgumentException("No consultation type found with the provided number.", nameof(number));
+                throw new ArgumentException("No hay tipos de consulta con ese ID.", nameof(number));
             }
 
-            // Use the new description here instead of the old one
+            // Se usa la nueva descripcion
             var updatedConsultationType = new ConsultationType(number, newDescription, newStatus);
 
             // Updating the consultation type

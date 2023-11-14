@@ -30,7 +30,7 @@
         {
             btnSearch = new Button();
             dgridReportOutput = new DataGridView();
-            labelPaciente = new Label();
+            label1 = new Label();
             cBoxSearch = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgridReportOutput).BeginInit();
             SuspendLayout();
@@ -54,16 +54,15 @@
             dgridReportOutput.RowTemplate.Height = 25;
             dgridReportOutput.Size = new Size(524, 136);
             dgridReportOutput.TabIndex = 30;
-            dgridReportOutput.CellContentClick += dgridReportOutput_CellContentClick;
+           // 
+            // label1
             // 
-            // labelPaciente
-            // 
-            labelPaciente.AutoSize = true;
-            labelPaciente.Location = new Point(12, 9);
-            labelPaciente.Name = "labelPaciente";
-            labelPaciente.Size = new Size(52, 15);
-            labelPaciente.TabIndex = 29;
-            labelPaciente.Text = "Paciente";
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(52, 15);
+            label1.TabIndex = 29;
+            label1.Text = "Paciente";
             // 
             // cBoxSearch
             // 
@@ -72,7 +71,6 @@
             cBoxSearch.Name = "cBoxSearch";
             cBoxSearch.Size = new Size(201, 23);
             cBoxSearch.TabIndex = 32;
-            cBoxSearch.SelectedIndexChanged += cBoxSearch_SelectedIndexChanged;
             // 
             // FrmAppointmentReportByClient
             // 
@@ -81,7 +79,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(cBoxSearch);
             Controls.Add(dgridReportOutput);
-            Controls.Add(labelPaciente);
+            Controls.Add(label1);
             Controls.Add(btnSearch);
             Name = "FrmAppointmentReportByClient";
             Text = "FrmAppointmentReportByClient";
@@ -94,7 +92,7 @@
 
         private Button btnSearch;
         private DataGridView dgridReportOutput;
-        private Label labelPaciente;
+        private Label label1;
         private ComboBox cBoxSearch;
     }
 }

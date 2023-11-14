@@ -25,7 +25,7 @@ namespace MedicalAppUI
             dataGridViewConsultationTypes.Columns.Clear();
 
             // Configure DataGridView
-            dataGridViewConsultationTypes.AutoGenerateColumns = false; // Prevent auto-creation of columns
+            dataGridViewConsultationTypes.AutoGenerateColumns = false;
 
             // Set up the columns
             var numberColumn = new DataGridViewTextBoxColumn
@@ -109,12 +109,12 @@ namespace MedicalAppUI
                 dataGridViewConsultationTypes.DataSource = _specialtyService.GetAllConsultationTypes();
                 dataGridViewConsultationTypes.ClearSelection(); // Clears the default selection
 
-                // Clear the input fields
+                // Limpia Inputs
                 txtNumber.Clear();
                 txtDescription.Clear();
                 cmbStatus.SelectedIndex = -1; // Reset combo box
 
-                // Refresh the DataGridView
+                // Refresh  DataGridView
                 LoadConsultationTypes();
 
             }
@@ -129,7 +129,7 @@ namespace MedicalAppUI
         {
             dataGridViewConsultationTypes.DataSource = null;
             dataGridViewConsultationTypes.DataSource = _specialtyService.GetAllConsultationTypes();
-            dataGridViewConsultationTypes.ClearSelection(); // Add this line to clear selection
+            dataGridViewConsultationTypes.ClearSelection();
         }
 
 
@@ -146,24 +146,24 @@ namespace MedicalAppUI
                     // Coloca los datos en los campos correspondientes para editar
                     txtNumber.Text = selectedType.Number.ToString();
                     txtDescription.Text = selectedType.Description;
-                    cmbStatus.SelectedItem = selectedType.Status.ToString(); // Asegúrate de que los nombres en cmbStatus coincidan con los nombres de enum
+                    cmbStatus.SelectedItem = selectedType.Status.ToString();
                 }
             }
         }
 
-        private void dataGridViewConsultationTypes_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewConsultationTypes_RowEnter(object sender, DataGridViewCellEventArgs e) //https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.datagridview.rowenter?view=windowsdesktop-7.0
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0)  // Asegura que se ha seleccionado una fila válida
             {
-                // Get the object ConsultationType from the selected row
+                // Obtén el objeto ConsultationType de la fila seleccionada
                 var selectedType = dataGridViewConsultationTypes.Rows[e.RowIndex].DataBoundItem as ConsultationType;
 
                 if (selectedType != null)
                 {
-                    // Set the data in the corresponding fields for editing
+                    // Coloca los datos en los campos correspondientes para editar
                     txtNumber.Text = selectedType.Number.ToString();
                     txtDescription.Text = selectedType.Description;
-                    cmbStatus.SelectedItem = selectedType.Status.ToString(); // Make sure the names in cmbStatus match the enum names
+                    cmbStatus.SelectedItem = selectedType.Status.ToString();
                 }
             }
         }

@@ -10,7 +10,9 @@ namespace MedicalAppUI
         private readonly DoctorService doctorService;
         private readonly PatientService patientService;
 
-        public FrmAppointmentReportByClient(AppointmentService appointmentService, DoctorService doctorService, PatientService patientService)
+        public FrmAppointmentReportByClient(AppointmentService appointmentService,
+                                            DoctorService doctorService,
+                                            PatientService patientService)
         {
             InitializeComponent();
 
@@ -80,13 +82,6 @@ namespace MedicalAppUI
             cBoxSearch.ValueMember = "Value";
         }
 
-
-
-        private void cBoxSearch_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             // Limpiar los datos antiguos
@@ -103,17 +98,14 @@ namespace MedicalAppUI
 
 
             //Para debug
-            string debugValue = selectedValue.ToString(); // Casting dynamic to string
+            string debugValue = selectedValue.ToString(); 
             Debug.WriteLine(debugValue);
-            
-
 
 
             int selectedValueId = int.Parse(selectedValue);
 
             var appointments = appointmentService.GetAppointmentsByPatient(selectedValueId);
 
-            Debug.WriteLine(appointments.Length);
 
             foreach (var appointment in appointments)
             {
@@ -131,9 +123,5 @@ namespace MedicalAppUI
 
         }
 
-        private void dgridReportOutput_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }

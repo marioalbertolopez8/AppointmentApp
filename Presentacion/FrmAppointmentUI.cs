@@ -37,7 +37,7 @@ namespace MedicalAppUI
 
                 // Completar ListBox listDoctor con DoctorService
 
-                var doctors = doctorService.GetAllDoctors();
+                var doctors = doctorService.GetAllActiveDoctors();
                 foreach (var doctor in doctors)
                 {
                     listDoctor.Items.Add($"{doctor.Id} -  {doctor.FirstName} {doctor.FirstLastName}");
@@ -45,7 +45,7 @@ namespace MedicalAppUI
 
                 // Completar ComboBox cboxSpeciality con SpecialtyService
 
-                var consultationTypes = specialtyService.GetAllConsultationTypes();
+                var consultationTypes = specialtyService.GetAllActiveSpecialties();
                 foreach (var consultationType in consultationTypes)
                 {
                     cboxSpeciality.Items.Add($"{consultationType.Number} - {consultationType.Description}");
@@ -125,7 +125,7 @@ namespace MedicalAppUI
             }
             if (date == DateTime.Today)
             {
-                MessageBox.Show("Para citas en el mismo día comuniquese con el Doctor.");
+                MessageBox.Show("Para citas en el mismo día comuníquese con el Doctor.");
                 return false;
             }
             return true;
@@ -194,7 +194,7 @@ namespace MedicalAppUI
                     return;
                 }
 
-                
+
                 var appointment = _appointmentService.CreateAppointment(
                     txtId.Text,
                     horario,

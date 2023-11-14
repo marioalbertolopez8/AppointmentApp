@@ -22,6 +22,10 @@ namespace MedicalAppServices
             return doctors.Where(d => d != null).ToArray();
         }
 
+        public IEnumerable<Doctor> GetAllActiveDoctors()
+        {
+            return doctors.Where(d => d != null && d.Status == DoctorStatus.Active).ToArray();
+        }
 
 
         public bool AddDoctor(string idString, string firstName, string firstLastName, string secondLastName, 

@@ -57,7 +57,6 @@
             registroToolStripMenuItem.Name = "registroToolStripMenuItem";
             registroToolStripMenuItem.Size = new Size(62, 20);
             registroToolStripMenuItem.Text = "Registro";
-            registroToolStripMenuItem.Click += registroToolStripMenuItem_Click;
             // 
             // registroDeCitasToolStripMenuItem
             // 
@@ -106,12 +105,14 @@
             citasPorFechaToolStripMenuItem.Name = "citasPorFechaToolStripMenuItem";
             citasPorFechaToolStripMenuItem.Size = new Size(180, 22);
             citasPorFechaToolStripMenuItem.Text = "Citas por Fecha";
+            citasPorFechaToolStripMenuItem.Click += citasPorFechaToolStripMenuItem_Click;
             // 
             // citasPorDoctorToolStripMenuItem
             // 
             citasPorDoctorToolStripMenuItem.Name = "citasPorDoctorToolStripMenuItem";
             citasPorDoctorToolStripMenuItem.Size = new Size(180, 22);
             citasPorDoctorToolStripMenuItem.Text = "Citas por Doctor";
+            citasPorDoctorToolStripMenuItem.Click += citasPorDoctorToolStripMenuItem_Click;
             // 
             // citasPorClienteToolStripMenuItem
             // 

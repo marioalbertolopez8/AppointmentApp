@@ -58,7 +58,7 @@ namespace MedicalAppUI
         {
             try
             {
-                // Intenta agregar un nuevo patient
+                // Intenta agregar un nuevo paciente
                 _patientService.AddPatient(txtId.Text, txtFirstName.Text, txtFirstLastName.Text, txtSecondLastName.Text, dateTimePickerBirthDay.Value, cmbGenero.SelectedItem as string );
 
                 MessageBox.Show("Patient agregado exitosamente."); // Mensaje de éxito
@@ -81,7 +81,7 @@ namespace MedicalAppUI
             try
             {
                 // Intenta actualizar la información del patient
-                //_patientService.UpdatePatient(txtId.Text, txtFirstName.Text, txtFirstLastName.Text, txtSecondLastName.Text, cmbStatus.SelectedItem as string);
+                _patientService.UpdatePatient(txtId.Text, dateTimePickerBirthDay.Value, cmbGenero.SelectedItem as string);
 
 
                 MessageBox.Show("Patient actualizado exitosamente."); // Mensaje de éxito
@@ -89,11 +89,14 @@ namespace MedicalAppUI
 
                 // Volver al modo 'Agregar' después de una actualización exitosa
                 _currentMode = Mode.Add;
-                btnToggleMode.Text = "Cambiar a Edición";
+                btnToggleMode.Text = "Editar ID";
                 ClearFields(); // Limpiar campos de entrada
 
                 // Controlar la disponibilidad de controles basados en el modo
                 txtId.Enabled = true;
+                txtFirstLastName.Enabled = true;
+                txtFirstLastName.Enabled = true;
+                txtSecondLastName.Enabled = true;
                 btnUpdate.Enabled = false;
                 btnAdd.Enabled = true;
             }
@@ -109,28 +112,7 @@ namespace MedicalAppUI
             }
         }
 
-        private void dgvPatients_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Asegurarse de que la fila seleccionada sea válida
-            if (e.RowIndex >= 0 && e.RowIndex < dgvPatients.Rows.Count - 1)
-            {
-                _currentMode = Mode.Edit; // Cambiar a modo de edición
-                btnToggleMode.Text = "Cambiar a Agregar";
 
-                // Rellenar campos de entrada con datos del patient seleccionado
-                DataGridViewRow row = dgvPatients.Rows[e.RowIndex];
-                txtId.Text = row.Cells[0].Value.ToString();
-                txtFirstName.Text = row.Cells[1].Value.ToString();
-                txtFirstLastName.Text = row.Cells[2].Value.ToString();
-                txtSecondLastName.Text = row.Cells[3].Value.ToString();
-                cmbGenero.SelectedItem = (char)row.Cells[4].Value == 'A' ? "Activo" : "Inactivo"; // Establecer estado
-
-                // Controlar la disponibilidad de controles basados en el modo
-                txtId.Enabled = false;
-                btnUpdate.Enabled = true;
-                btnAdd.Enabled = false;
-            }
-        }
 
         private void btnToggleMode_Click_1(object sender, EventArgs e)
         {
@@ -149,6 +131,9 @@ namespace MedicalAppUI
 
             // Controlar la disponibilidad de controles basados en el modo
             txtId.Enabled = _currentMode == Mode.Add;
+            txtFirstName.Enabled = _currentMode == Mode.Add;
+            txtSecondLastName.Enabled = _currentMode == Mode.Add;
+            txtFirstLastName.Enabled = _currentMode == Mode.Add;
             btnUpdate.Enabled = _currentMode == Mode.Edit;
             btnAdd.Enabled = _currentMode == Mode.Add;
         }

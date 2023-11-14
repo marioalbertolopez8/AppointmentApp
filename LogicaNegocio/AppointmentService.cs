@@ -21,8 +21,13 @@ namespace MedicalAppServices
             this.specialtyService = specialtyService ?? throw new ArgumentNullException(nameof(specialtyService));
         }
 
-        //public Appointment CreateAppointment(int appointmentId, DateTime dateTime, int consultationTypeId, int patientId, int doctorId)
-        public Appointment CreateAppointment(string StringAppointmentId, DateTime dateTime, int consultationTypeId, int patientId, int doctorId)
+        public IEnumerable<Appointment> GetAppointmentDates()
+        {
+            // Devolver solo los elementos que no sean null
+            return appointments.Where(d => d != null).ToArray();
+        }
+
+public Appointment CreateAppointment(string StringAppointmentId, DateTime dateTime, int consultationTypeId, int patientId, int doctorId)
         {
             // Verificar si el array ya está lleno
             if (appointmentIndex >= appointments.Length)
@@ -70,7 +75,11 @@ namespace MedicalAppServices
                 }
             }
 
+           //Creacion nuevo appointment
+
             var appointment = new Appointment(appointmentId, dateTime, consultationType, patient, doctor);
+            
+            //Se añade al array
             appointments[appointmentIndex++] = appointment; // Agregar la cita y luego incrementar el índice
 
             return appointment;
@@ -98,6 +107,7 @@ namespace MedicalAppServices
             }
 
             // Reducir el tamaño del array para excluir posiciones vacías
+            //Por referencia para que se refleje en el método llamador 
             Array.Resize(ref result, count);
             return result;
         }

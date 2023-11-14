@@ -10,8 +10,8 @@
     {
         public int Number { get; private set; }
         public string Description { get; private set; }
-        public char Status { get; private set; } // Use char to store 'A' or 'I'
-        public ConsultationStatus DisplayStatus // Use enum for displaying
+        public char Status { get; private set; }
+        public ConsultationStatus DisplayStatus
         {
             get
             {
@@ -22,8 +22,8 @@
         public ConsultationType(int number, string description, ConsultationStatus status)
         {
             Number = number;
-            Description = description ?? throw new ArgumentNullException(nameof(description), "Es necesaria.");
-            Status = status == ConsultationStatus.Active ? 'A' : 'I'; // Store 'A' or 'I'
+            Description = description ?? throw new ArgumentNullException(nameof(description), "Una descripción es necesaria.");
+            Status = status == ConsultationStatus.Active ? 'A' : 'I';
         }
     }
 }
